@@ -1,13 +1,23 @@
 #root {
-  color: red;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+  color: rgb(8, 8, 8);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
-.movie-card {
+.top-container {
   background-color: lightgrey;
   color: black;
   padding: auto;
   margin: 10px;
+}
+
+.top-container > h2 {
+  display: flex;
+  font-size: 20px;
+  align-content: center;
+  justify-content: center;
+}
+.top-container > img {
+}
+.top-container > p {
 }

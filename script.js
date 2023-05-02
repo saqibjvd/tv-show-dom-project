@@ -6,7 +6,7 @@ function setup() {
 
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
-  rootElem.textContent = `Got ${episodeList.length} episode(s)`;
+  // rootElem.textContent = `Got ${episodeList.length} episode(s)`;
 
   // MOVIE CARD - Display episode, Name  - part 1 (100 episodes)
 
@@ -15,16 +15,26 @@ function makePageForEpisodes(episodeList) {
     topContainer.classList.add("top-container");
     rootElem.appendChild(topContainer);
 
-    let movieCard = document.createElement("div");
-    movieCard.classList.add("movie-card");
-    topContainer.appendChild(movieCard);
+    // movie CARD - disp;ay episode nr, tittle , image and text.
 
-    let episodeName = document.createElement("p");
-    movieCard.appendChild(episodeName);
-    episodeName.innerText = episodeList[i].name;
+    topContainer.innerHTML = `
+   <h2>${episodeList[i].name} - S${episodeList[i].season
+      .toString()
+      .padStart(2, "0")}E${episodeList[i].number
+      .toString()
+      .padStart(2, "0")}</h2> 
+   <img src="${episodeList[i].image.medium}">
+   <P>${episodeList[i].summary}</p>
+    `;
+
+    // let movieCard = document.createElement("div");
+    // movieCard.classList.add("movie-card");
+    // topContainer.appendChild(movieCard);
+
+    // let episodeName = document.createElement("p");
+    // movieCard.appendChild(episodeName);
+    // episodeName.innerText = episodeList[i].name;
   }
-
-  console.log(episodeList);
 }
 
 window.onload = setup;
