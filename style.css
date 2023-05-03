@@ -1,23 +1,43 @@
+body {
+  margin: 40px;
+}
+
 #root {
   color: rgb(8, 8, 8);
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
 }
 
 .top-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 5px;
+}
+
+.movie-card {
+  border: 3px solid purple;
+  border-radius: 10px;
+}
+
+/* .top-container {
   background-color: lightgrey;
   color: black;
   padding: auto;
   margin: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+} */
+
+/* .top-container > h2 {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  align-items: center;
 }
 
-.top-container > h2 {
+.top-container > p {
+  margin: 10px;
   display: flex;
-  font-size: 20px;
+  font-size: 15px;
   align-content: center;
   justify-content: center;
-}
-.top-container > img {
-}
-.top-container > p {
-}
+} */

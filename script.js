@@ -5,36 +5,61 @@ function setup() {
 }
 
 function makePageForEpisodes(episodeList) {
+  console.log(episodeList);
   const rootElem = document.getElementById("root");
-  // rootElem.textContent = `Got ${episodeList.length} episode(s)`;
+  rootElem.textContent = `Got ${episodeList.length} episode(s)`;
 
-  // MOVIE CARD - Display episode, Name  - part 1 (100 episodes)
+  // Part 1 - 100 episodes
+
+  let topContainer = document.createElement("div");
+  topContainer.classList.add("top-container");
+  rootElem.appendChild(topContainer);
+
+  // looping throuhg episode
 
   for (let i = 0; i < episodeList.length; i++) {
-    let topContainer = document.createElement("div");
-    topContainer.classList.add("top-container");
-    rootElem.appendChild(topContainer);
+    let movieCard = document.createElement("div");
+    movieCard.classList.add("movie-card");
+    topContainer.appendChild(movieCard); // hold image, tiitle , summary
 
-    // movie CARD - disp;ay episode nr, tittle , image and text.
+    // Episode Tittle
 
-    topContainer.innerHTML = `
-   <h2>${episodeList[i].name} - S${episodeList[i].season
+    let episodeName = document.createElement("p");
+    movieCard.appendChild(episodeName);
+    episodeName.innerHTML = `${episodeList[i].name} - S${episodeList[i].season
       .toString()
-      .padStart(2, "0")}E${episodeList[i].number
-      .toString()
-      .padStart(2, "0")}</h2> 
-   <img src="${episodeList[i].image.medium}">
-   <P>${episodeList[i].summary}</p>
-    `;
+      .padStart(2, "0")}E${episodeList[i].number.toString().padStart(2, "0")}`;
 
-    // let movieCard = document.createElement("div");
-    // movieCard.classList.add("movie-card");
-    // topContainer.appendChild(movieCard);
+    // Episode image
 
-    // let episodeName = document.createElement("p");
-    // movieCard.appendChild(episodeName);
-    // episodeName.innerText = episodeList[i].name;
+    let imageContainer = document.createElement("div");
+    imageContainer.classList.add("img-container");
+    movieCard.appendChild(imageContainer);
+
+    let episodeImage = document.createElement("img");
+    imageContainer.appendChild(episodeImage);
+    episodeImage.src = episodeList[i].image.medium;
+
+    // Episode Summary
+
+    let summaryContainer = document.createElement("div");
+    summaryContainer.classList.add("summary-container");
+    movieCard.appendChild(summaryContainer);
+
+    let episodeSummaryEl = document.createElement("p");
+    summaryContainer.appendChild(episodeSummaryEl);
+    episodeSummaryEl.innerHTML = episodeList[i].summary;
   }
 }
 
 window.onload = setup;
+
+//   topContainer.innerHTML = `
+//  <h2>${episodeList[i].name} - S${episodeList[i].season
+//     .toString()
+//     .padStart(2, "0")}E${episodeList[i].number
+//     .toString()
+//     .padStart(2, "0")}</h2>
+//  <img src="${episodeList[i].image.medium}">
+//  <P>${episodeList[i].summary}</p>
+//   `;
