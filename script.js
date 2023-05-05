@@ -22,7 +22,7 @@ function makePageForEpisodes(episodeList) {
     movieCard.classList.add("movie-card");
     topContainer.appendChild(movieCard); // hold image, tiitle , summary
 
-    // Episode Tittle
+    // Episode Tittle and episode number
 
     let episodeName = document.createElement("p");
     movieCard.appendChild(episodeName);
@@ -30,7 +30,7 @@ function makePageForEpisodes(episodeList) {
       .toString()
       .padStart(2, "0")}E${episodeList[i].number.toString().padStart(2, "0")}`;
 
-    // Episode image
+    // Episode image container
 
     let imageContainer = document.createElement("div");
     imageContainer.classList.add("img-container");

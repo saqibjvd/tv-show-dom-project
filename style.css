@@ -1,31 +1,36 @@
 body {
   margin: 40px;
+  background-color: rgb(27, 22, 22);
 }
 
 #root {
-  color: rgb(8, 8, 8);
+  color: rgb(242, 234, 234);
+  background-color: rgb(27, 22, 22);
 }
 
 .top-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 5px;
+  gap: 15px;
+  text-align: center;
 }
 
 .movie-card {
-  border: 3px solid purple;
-  border-radius: 10px;
+  border: 2px solid rgb(220, 101, 4);
+  padding: 10px;
+  background-color: rgb(27, 22, 22);
+  color: rgb(242, 234, 234);
 }
 
-/* .top-container {
-  background-color: lightgrey;
-  color: black;
-  padding: auto;
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-} */
+.img-container {
+}
+
+.summary-container {
+}
+
+p {
+  padding: 0, 5px;
+}
 
 /* .top-container > h2 {
   display: flex;
