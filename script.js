@@ -1,13 +1,14 @@
 //You can edit ALL of the code here
+
 function setup() {
   const allEpisodes = getAllEpisodes();
   makePageForEpisodes(allEpisodes);
 }
 
 function makePageForEpisodes(episodeList) {
-  console.log(episodeList);
   const rootElem = document.getElementById("root");
-  rootElem.textContent = `Got ${episodeList.length} episode(s)`;
+  // rootElem.textContent = `Got ${episodeList.length} episode(s)`;
+  rootElem.innerHTML = "";
 
   // Part 1 - 100 episodes
 
@@ -53,6 +54,37 @@ function makePageForEpisodes(episodeList) {
 }
 
 window.onload = setup;
+
+// level 200
+
+const allEpisodes = getAllEpisodes();
+
+const searchEle = document.getElementById("userInput");
+searchEle.addEventListener("input", searchEpisode);
+
+function searchEpisode() {
+  const searchInput = searchEle.value.toLowerCase();
+  const filterEpisodes = allEpisodes.filter((episode) => {
+    if (
+      episode.name.toLowerCase().includes(searchInput) ||
+      episode.summary.toLowerCase().includes(searchInput)
+    ) {
+      return episode;
+    }
+  });
+
+  document.getElementById("number").innerText = filterEpisodes.length;
+  makePageForEpisodes(filterEpisodes);
+}
+
+// footer
+
+const footerEle = document.getElementById("footer");
+const footerLink = document.createElement("a");
+footerLink.href = "https://www.tvmaze.com/";
+
+footerLink.innerText = "data from Tvmaze.com";
+footerEle.appendChild(footerLink);
 
 //   topContainer.innerHTML = `
 //  <h2>${episodeList[i].name} - S${episodeList[i].season

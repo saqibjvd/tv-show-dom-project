@@ -1,17 +1,18 @@
 body {
-  margin: 40px;
-  background-color: rgb(27, 22, 22);
+  margin: 20px;
+  padding: 1rem;
+  /* background-color: rgb(27, 22, 22); */
 }
 
 #root {
   color: rgb(242, 234, 234);
-  background-color: rgb(27, 22, 22);
+  /* background-color: rgb(27, 22, 22); */
 }
 
 .top-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 15px;
+  gap: 1rem;
   text-align: center;
 }
 
