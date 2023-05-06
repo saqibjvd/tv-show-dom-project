@@ -10,7 +10,7 @@ function makePageForEpisodes(episodeList) {
   // rootElem.textContent = `Got ${episodeList.length} episode(s)`;
   rootElem.innerHTML = "";
 
-  // Part 1 - 100 episodes
+  // Part 1 -  All 100 episodes showing.
 
   let topContainer = document.createElement("div");
   topContainer.classList.add("top-container");
@@ -25,7 +25,11 @@ function makePageForEpisodes(episodeList) {
 
     // Episode Tittle and episode number
 
-    let episodeName = document.createElement("p");
+    let titleContainer = document.createElement("div");
+    titleContainer.classList.add("title-container");
+    movieCard.appendChild(titleContainer);
+
+    let episodeName = document.createElement("h3");
     movieCard.appendChild(episodeName);
     episodeName.innerHTML = `${episodeList[i].name} - S${episodeList[i].season
       .toString()
@@ -56,6 +60,7 @@ function makePageForEpisodes(episodeList) {
 window.onload = setup;
 
 // level 200
+// live search
 
 const allEpisodes = getAllEpisodes();
 
