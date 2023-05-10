@@ -82,6 +82,58 @@ function searchEpisode() {
   makePageForEpisodes(filterEpisodes);
 }
 
+// level 300
+
+// creating select form
+let selectElm = document.querySelector("#episode-list");
+let optionElm = document.createElement("option");
+optionElm.innerText = "Select Episodes from list..";
+selectElm.appendChild(optionElm);
+
+// list all episodes in the format: "S01E01 - Winter is Coming"
+allEpisodes.forEach((episode) => {
+  let options = document.createElement("option");
+  options.value = episode.name;
+  options.innerText = `${episode.season
+    .toString()
+    .padStart(2, "0")}E${episode.number.toString().padStart(2, "0")} - ${
+    episode.name
+  }`;
+  selectElm.appendChild(options);
+});
+
+// take user directly to episode in the list.
+
+selectElm.addEventListener("change", function () {
+  let selectedEpisode = selectElm.value;
+  let episodes = Array.from(document.getElementsByClassName("movieCard"));
+});
+
+// episodes.forEach((episode) => {
+//   let h3Element = episodeName.querySelector("h3");
+//   if (h3Element.innerText.includes(selectedEpisode)) {
+//     episode.style.display = "block";
+//     // document.querySelector("#num").innerText = 1;
+//   } else {
+//     episode.style.display = "none";
+//   }
+// });
+
+function displaySingleEpisode() {
+  for (let i = 0; i < episodeList.length; i++) {
+    if (episodeName.includes(selectedEpisode)) {
+      // if (options.value === episode.name)
+      episode.style.display = "block";
+    } else {
+      episode.style.display = "none";
+    }
+  }
+}
+
+// When the user makes a selection, they should be taken directly to that episode in the list
+
+// Bonus: if you prefer, when the select is used, ONLY show the selected episode. If you do this, be sure to provide a way for the user to see all episodes again.
+
 // footer
 
 const footerEle = document.getElementById("footer");
