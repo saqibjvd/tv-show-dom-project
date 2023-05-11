@@ -16,14 +16,14 @@ function makePageForEpisodes(episodeList) {
   topContainer.classList.add("top-container");
   rootElem.appendChild(topContainer);
 
-  // looping throuhg episode
+  // looping through episode
 
   for (let i = 0; i < episodeList.length; i++) {
     let movieCard = document.createElement("div");
     movieCard.classList.add("movie-card");
-    topContainer.appendChild(movieCard); // hold image, tiitle , summary
+    topContainer.appendChild(movieCard);
 
-    // Episode Tittle and episode number
+    // Episode Tittle and episode number .....
 
     let titleContainer = document.createElement("div");
     titleContainer.classList.add("title-container");
@@ -62,6 +62,7 @@ window.onload = setup;
 // level 200
 // live search
 
+// search for episode in search bar
 const allEpisodes = getAllEpisodes();
 
 const searchEle = document.getElementById("userInput");
@@ -84,13 +85,16 @@ function searchEpisode() {
 
 // level 300
 
-// creating select form
+// creating select form - Dropdown menu for episode list
 let selectElm = document.querySelector("#episode-list");
 let optionElm = document.createElement("option");
 optionElm.innerText = "Select Episodes from list..";
 selectElm.appendChild(optionElm);
 
+console.log(1, optionElm);
+
 // list all episodes in the format: "S01E01 - Winter is Coming"
+
 allEpisodes.forEach((episode) => {
   let options = document.createElement("option");
   options.value = episode.name;
@@ -102,35 +106,49 @@ allEpisodes.forEach((episode) => {
   selectElm.appendChild(options);
 });
 
-// take user directly to episode in the list.
+// take user directly to episode in the list when selected from dropdown menu.
 
 selectElm.addEventListener("change", function () {
   let selectedEpisode = selectElm.value;
-  let episodes = Array.from(document.getElementsByClassName("movieCard"));
+  console.log(2, selectedEpisode);
+
+  let episodeCardElm = document.getElementsByClassName("movie-card");
+  console.log(5, episodeCardElm);
 });
 
-// episodes.forEach((episode) => {
-//   let h3Element = episodeName.querySelector("h3");
-//   if (h3Element.innerText.includes(selectedEpisode)) {
+// When the user makes a selection, they should be taken directly to that episode in the list
+
+// allEpisodes.forEach((episode) => {
+//   let episodeTitle = episodeName.querySelector("h3");
+//   if (episodeTitle.innerText.includes(selectedEpisode)) {
 //     episode.style.display = "block";
-//     // document.querySelector("#num").innerText = 1;
+//     console.log(4, episode, episodeTitle);
 //   } else {
 //     episode.style.display = "none";
 //   }
 // });
 
-function displaySingleEpisode() {
-  for (let i = 0; i < episodeList.length; i++) {
-    if (episodeName.includes(selectedEpisode)) {
-      // if (options.value === episode.name)
-      episode.style.display = "block";
-    } else {
-      episode.style.display = "none";
-    }
-  }
-}
+// function tryingToMatch(event) {
+//   const theInput = document.getElementById("episode-list").value;
+//   const myFilterData = allEpisodes.filter((episode) =>
+//     matchQueryofSomeSort(episode, query)
+//   );
 
-// When the user makes a selection, they should be taken directly to that episode in the list
+//   anotherFunctionforMyPages(myFilterData);
+// }
+// function matchQueryofSomeSort(episode, query) {
+//   return episode.name, theInput || episode.summary, theInput;
+// }
+
+// episodes.forEach((episode) => {
+//   let h3Element = episodeName.querySelector("h3");
+//   if (h3Element.innerText.includes(selectedEpisode)) {
+//     episode.style.display = "block";
+//     document.querySelector("#num").innerText = 1;
+//   } else {
+//     episode.style.display = "none";
+//   }
+// });
 
 // Bonus: if you prefer, when the select is used, ONLY show the selected episode. If you do this, be sure to provide a way for the user to see all episodes again.
 
@@ -142,6 +160,8 @@ footerLink.href = "https://www.tvmaze.com/";
 
 footerLink.innerText = "data from Tvmaze.com";
 footerEle.appendChild(footerLink);
+
+//.......OTHER CODE EXAMPLE.........
 
 //   topContainer.innerHTML = `
 //  <h2>${episodeList[i].name} - S${episodeList[i].season
