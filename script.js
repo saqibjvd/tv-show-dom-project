@@ -86,12 +86,11 @@ function searchEpisode() {
 // level 300
 
 // creating select form - Dropdown menu for episode list
+
 let selectElm = document.querySelector("#episode-list");
 let optionElm = document.createElement("option");
 optionElm.innerText = "Select Episodes from list..";
 selectElm.appendChild(optionElm);
-
-console.log(1, optionElm);
 
 // list all episodes in the format: "S01E01 - Winter is Coming"
 
@@ -107,6 +106,7 @@ allEpisodes.forEach((episode) => {
 });
 
 // take user directly to episode in the list when selected from dropdown menu.
+// Bonus: if you prefer, when the select is used, ONLY show the selected episode. If you do this, be sure to provide a way for the user to see all episodes again.
 
 selectElm.addEventListener("change", searchDropDown);
 
@@ -114,11 +114,10 @@ function searchDropDown() {
   let selectedEpisode = selectElm.value;
 
   const filterEpisodes = allEpisodes.filter((episode) => {
-    if (
-      episode.name.includes(selectedEpisode) ||
-      episode.summary.includes(selectedEpisode)
-    ) {
+    if (episode.name.includes(selectedEpisode)) {
       return episode;
+    } else if (selectedEpisode === optionElm.innerText) {
+      return allEpisodes;
     }
   });
 
@@ -126,50 +125,7 @@ function searchDropDown() {
   makePageForEpisodes(filterEpisodes);
 }
 
-// selectElm.addEventListener("change", function () {
-//   let selectedEpisode = selectElm.value;
-//   console.log(2, selectedEpisode);
-
-//   let episodeCardElm = document.getElementsByClassName("movie-card");
-
-//   console.log(5, episodeCardElm);
-// });
-
-// When the user makes a selection, they should be taken directly to that episode in the list
-
-// allEpisodes.forEach((episode) => {
-//   let episodeTitle = episodeName.querySelector("h3");
-//   if (episodeTitle.innerText.includes(selectedEpisode)) {
-//     episode.style.display = "block";
-//     console.log(4, episode, episodeTitle);
-//   } else {
-//     episode.style.display = "none";
-//   }
-// });
-
-// function tryingToMatch(event) {
-//   const theInput = document.getElementById("episode-list").value;
-//   const myFilterData = allEpisodes.filter((episode) =>
-//     matchQueryofSomeSort(episode, query)
-//   );
-
-//   anotherFunctionforMyPages(myFilterData);
-// }
-// function matchQueryofSomeSort(episode, query) {
-//   return episode.name, theInput || episode.summary, theInput;
-// }
-
-// episodes.forEach((episode) => {
-//   let h3Element = episodeName.querySelector("h3");
-//   if (h3Element.innerText.includes(selectedEpisode)) {
-//     episode.style.display = "block";
-//     document.querySelector("#num").innerText = 1;
-//   } else {
-//     episode.style.display = "none";
-//   }
-// });
-
-// Bonus: if you prefer, when the select is used, ONLY show the selected episode. If you do this, be sure to provide a way for the user to see all episodes again.
+// || episode.summary.includes(selectedEpisode
 
 // footer
 
