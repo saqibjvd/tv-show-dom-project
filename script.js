@@ -89,7 +89,7 @@ function searchEpisode() {
 
 let selectElm = document.querySelector("#episode-list");
 let optionElm = document.createElement("option");
-optionElm.innerText = "Select Episodes from list..";
+optionElm.innerText = "All Episodes.";
 selectElm.appendChild(optionElm);
 
 // list all episodes in the format: "S01E01 - Winter is Coming"
@@ -116,7 +116,7 @@ function searchDropDown() {
   const filterEpisodes = allEpisodes.filter((episode) => {
     if (episode.name.includes(selectedEpisode)) {
       return episode;
-    } else if (selectedEpisode === optionElm.innerText) {
+    } else if (selectedEpisode == optionElm.innerText) {
       return allEpisodes;
     }
   });
