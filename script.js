@@ -108,13 +108,32 @@ allEpisodes.forEach((episode) => {
 
 // take user directly to episode in the list when selected from dropdown menu.
 
-selectElm.addEventListener("change", function () {
-  let selectedEpisode = selectElm.value;
-  console.log(2, selectedEpisode);
+selectElm.addEventListener("change", searchDropDown);
 
-  let episodeCardElm = document.getElementsByClassName("movie-card");
-  console.log(5, episodeCardElm);
-});
+function searchDropDown() {
+  let selectedEpisode = selectElm.value;
+
+  const filterEpisodes = allEpisodes.filter((episode) => {
+    if (
+      episode.name.includes(selectedEpisode) ||
+      episode.summary.includes(selectedEpisode)
+    ) {
+      return episode;
+    }
+  });
+
+  document.getElementById("number").innerText = filterEpisodes.length;
+  makePageForEpisodes(filterEpisodes);
+}
+
+// selectElm.addEventListener("change", function () {
+//   let selectedEpisode = selectElm.value;
+//   console.log(2, selectedEpisode);
+
+//   let episodeCardElm = document.getElementsByClassName("movie-card");
+
+//   console.log(5, episodeCardElm);
+// });
 
 // When the user makes a selection, they should be taken directly to that episode in the list
 
