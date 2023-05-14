@@ -1,12 +1,13 @@
 //You can edit ALL of the code here
 
+// function for level 100 - 300
+
 // function setup() {
 //   const allEpisodes = getAllEpisodes();
 //   makePageForEpisodes(allEpisodes);
 // }
 
 // Level 350
-
 function setup() {
   fetch("https://api.tvmaze.com/shows/82/episodes")
     .then(function (response) {
@@ -22,21 +23,18 @@ function makePageForEpisodes(episodeList) {
   // rootElem.textContent = `Got ${episodeList.length} episode(s)`;
   rootElem.innerHTML = "";
 
-  // Part 1 -  All 100 episodes showing.
-
+  // Part 1 -  Level 100 all episodes showing.
   let topContainer = document.createElement("div");
   topContainer.classList.add("top-container");
   rootElem.appendChild(topContainer);
 
   // looping through episode
-
   for (let i = 0; i < episodeList.length; i++) {
     let movieCard = document.createElement("div");
     movieCard.classList.add("movie-card");
     topContainer.appendChild(movieCard);
 
     // Episode Tittle and episode number .....
-
     let titleContainer = document.createElement("div");
     titleContainer.classList.add("title-container");
     movieCard.appendChild(titleContainer);
@@ -48,7 +46,6 @@ function makePageForEpisodes(episodeList) {
       .padStart(2, "0")}E${episodeList[i].number.toString().padStart(2, "0")}`;
 
     // Episode image container
-
     let imageContainer = document.createElement("div");
     imageContainer.classList.add("img-container");
     movieCard.appendChild(imageContainer);
@@ -58,7 +55,6 @@ function makePageForEpisodes(episodeList) {
     episodeImage.src = episodeList[i].image.medium;
 
     // Episode Summary
-
     let summaryContainer = document.createElement("div");
     summaryContainer.classList.add("summary-container");
     movieCard.appendChild(summaryContainer);
@@ -73,7 +69,6 @@ window.onload = setup;
 
 // level 200
 // live search
-
 // search for episode in search bar
 const allEpisodes = getAllEpisodes();
 
@@ -96,16 +91,13 @@ function searchEpisode() {
 }
 
 // level 300
-
 // creating select form - Dropdown menu for episode list
-
 let selectElm = document.querySelector("#episode-list");
 let optionElm = document.createElement("option");
 optionElm.innerText = "All Episodes.";
 selectElm.appendChild(optionElm);
 
 // list all episodes in the format: "S01E01 - Winter is Coming"
-
 allEpisodes.forEach((episode) => {
   let options = document.createElement("option");
   options.value = episode.name;
@@ -119,7 +111,6 @@ allEpisodes.forEach((episode) => {
 
 // take user directly to episode in the list when selected from dropdown menu.
 // Bonus: if you prefer, when the select is used, ONLY show the selected episode. If you do this, be sure to provide a way for the user to see all episodes again.
-
 selectElm.addEventListener("change", searchDropDown);
 
 function searchDropDown() {
@@ -142,7 +133,6 @@ function searchDropDown() {
 }
 
 // footer
-
 const footerEle = document.getElementById("footer");
 const footerLink = document.createElement("a");
 footerLink.href = "https://www.tvmaze.com/";
