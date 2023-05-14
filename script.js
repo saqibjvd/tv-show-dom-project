@@ -1,8 +1,20 @@
 //You can edit ALL of the code here
 
+// function setup() {
+//   const allEpisodes = getAllEpisodes();
+//   makePageForEpisodes(allEpisodes);
+// }
+
+// Level 350
+
 function setup() {
-  const allEpisodes = getAllEpisodes();
-  makePageForEpisodes(allEpisodes);
+  fetch("https://api.tvmaze.com/shows/82/episodes")
+    .then(function (response) {
+      return response.json();
+    })
+    .then((result) => {
+      makePageForEpisodes(result);
+    });
 }
 
 function makePageForEpisodes(episodeList) {
@@ -114,7 +126,11 @@ function searchDropDown() {
   let selectedEpisode = selectElm.value;
 
   const filterEpisodes = allEpisodes.filter((episode) => {
-    if (episode.name.includes(selectedEpisode)) {
+    if (
+      episode.name.includes(
+        selectedEpisode || episode.summary.includes(selectedEpisode)
+      )
+    ) {
       return episode;
     } else if (selectedEpisode == optionElm.innerText) {
       return allEpisodes;
@@ -124,8 +140,6 @@ function searchDropDown() {
   document.getElementById("number").innerText = filterEpisodes.length;
   makePageForEpisodes(filterEpisodes);
 }
-
-// || episode.summary.includes(selectedEpisode
 
 // footer
 
