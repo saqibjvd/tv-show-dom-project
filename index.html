@@ -10,6 +10,7 @@
 
   <body>
     <div id="search-bar">
+      <select name="show-selector" id="show-list" class="form-control"></select>
       <select
         name="episode-selector"
         id="episode-list"
@@ -20,12 +21,15 @@
       <label for="userInput"
         >Showing: <span id="number">73</span> / 73 Episode(s)</label
       >
+
+      <p>Please select show from the option above</p>
     </div>
 
     <div id="root"></div>
     <footer id="footer"></footer>
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>
+    <script src="shows.js"></script>
 
     <!-- Loads YOUR javascript code -->
     <script src="script.js"></script>

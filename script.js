@@ -7,18 +7,18 @@
 //   makePageForEpisodes(allEpisodes);
 // }
 
-// Level 350
+//Level 350
 function setup() {
-  fetch("https://api.tvmaze.com/shows/82/episodes")
-    .then(function (response) {
-      return response.json();
-    })
-    .then((result) => {
-      makePageForEpisodes(result);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  // fetch("https://api.tvmaze.com/shows/82/episodes")`
+  //   .then(function (response) {
+  //     return response.json();
+  //   })
+  //   .then((result) => {
+  //     makePageForEpisodes(result);
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
 }
 
 function makePageForEpisodes(episodeList) {
@@ -26,7 +26,7 @@ function makePageForEpisodes(episodeList) {
   // rootElem.textContent = `Got ${episodeList.length} episode(s)`;
   rootElem.innerHTML = "";
 
-  // Part 1 -  Level 100 all episodes showing.
+  //  Level 100 all episodes showing.
   let topContainer = document.createElement("div");
   topContainer.classList.add("top-container");
   rootElem.appendChild(topContainer);
@@ -37,7 +37,7 @@ function makePageForEpisodes(episodeList) {
     movieCard.classList.add("movie-card");
     topContainer.appendChild(movieCard);
 
-    // Episode Tittle and episode number .....
+    // Episode Tittle and episode number
     let titleContainer = document.createElement("div");
     titleContainer.classList.add("title-container");
     movieCard.appendChild(titleContainer);
@@ -57,7 +57,7 @@ function makePageForEpisodes(episodeList) {
     imageContainer.appendChild(episodeImage);
     episodeImage.src = episodeList[i].image.medium;
 
-    // Episode Summary
+    // Episode Summary container
     let summaryContainer = document.createElement("div");
     summaryContainer.classList.add("summary-container");
     movieCard.appendChild(summaryContainer);
@@ -70,10 +70,8 @@ function makePageForEpisodes(episodeList) {
 
 window.onload = setup;
 
-// level 200
-// live search
 // search for episode in search bar
-const allEpisodes = getAllEpisodes();
+// const allEpisodes = getAllEpisodes();
 
 const searchEle = document.getElementById("userInput");
 searchEle.addEventListener("input", searchEpisode);
@@ -94,26 +92,41 @@ function searchEpisode() {
 }
 
 // level 300
-// creating select form - Dropdown menu for episode list
+//creating select form - Dropdown menu for episode list - Level 300
 let selectElm = document.querySelector("#episode-list");
 let optionElm = document.createElement("option");
 optionElm.innerText = "Show All Episodes...";
 selectElm.appendChild(optionElm);
 
-// list all episodes in the format: "S01E01 - Winter is Coming"
-allEpisodes.forEach((episode) => {
-  let options = document.createElement("option");
-  options.value = episode.name;
-  options.innerText = `${episode.season
-    .toString()
-    .padStart(2, "0")}E${episode.number.toString().padStart(2, "0")} - ${
-    episode.name
-  }`;
-  selectElm.appendChild(options);
-});
+//list all episodes of all shows in the format: "S01E01 - Winter is Coming". Level 400
+function listAllEpisodes(allEpisodes) {
+  allEpisodes.forEach((episode) => {
+    let options = document.createElement("option");
+    options.value = episode.name;
 
-// take user directly to episode in the list when selected from dropdown menu.
-// Bonus: if you prefer, when the select is used, ONLY show the selected episode. If you do this, be sure to provide a way for the user to see all episodes again.
+    options.innerText = `${episode.season
+      .toString()
+      .padStart(2, "0")}E - ${episode.number.toString().padStart(2, "0")} - ${
+      episode.name
+    }`;
+    selectElm.appendChild(options);
+  });
+}
+
+// list all episodes in the format: "S01E01 - Winter is Coming"
+
+// allEpisodes.forEach((episode) => {
+//   let options = document.createElement("option");
+//   options.value = episode.name;
+//   options.innerText = `${episode.season
+//     .toString()
+//     .padStart(2, "0")}E${episode.number.toString().padStart(2, "0")} - ${
+//     episode.name
+//   }`;
+//   selectElm.appendChild(options);
+// });
+
+// show episode Name, card on main page when selected and hide other cards.
 selectElm.addEventListener("change", searchDropDown);
 
 function searchDropDown() {
@@ -135,6 +148,52 @@ function searchDropDown() {
   makePageForEpisodes(filterEpisodes);
 }
 
+//...................Need to re order my code from here..............//
+
+//Option list (dropdown menu) - Level 400
+let showListElm = document.getElementById("show-list");
+let showOptionElm = document.createElement("option");
+showOptionElm.innerText = "Select a Show from list";
+showListElm.appendChild(showOptionElm);
+
+const allShows = getAllShows();
+
+//Showing all shows list. - Level 400.
+function showAllShows() {
+  allShows.forEach((show) => {
+    let option = document.createElement("option");
+    option.innerText = show.name;
+    showListElm.appendChild(option);
+  });
+}
+
+showAllShows();
+//.................................................//
+
+// event listner for all shows from option dropwdown - Level 400
+showListElm.addEventListener("change", selectAShow);
+function selectAShow() {
+  const showName = showListElm.value;
+  const selectedShow = allShows.filter((show) => showName === show.name);
+  const selectedShowId = selectedShow[0].id;
+
+  //fetching all episode  - Level 400
+  fetch(`https://api.tvmaze.com/shows/${selectedShowId}/episodes`)
+    .then(function (response) {
+      return response.json();
+    })
+    .then((result) => {
+      makePageForEpisodes(result);
+      listAllEpisodes(result);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+// sort series name in alaphabetic order using sort(). - Level 400
+// showName.sort();
+
 // footer
 const footerEle = document.getElementById("footer");
 const footerLink = document.createElement("a");
@@ -142,15 +201,3 @@ footerLink.href = "https://www.tvmaze.com/";
 
 footerLink.innerText = "data from Tvmaze.com";
 footerEle.appendChild(footerLink);
-
-//.......OTHER CODE EXAMPLE.........
-
-//   topContainer.innerHTML = `
-//  <h2>${episodeList[i].name} - S${episodeList[i].season
-//     .toString()
-//     .padStart(2, "0")}E${episodeList[i].number
-//     .toString()
-//     .padStart(2, "0")}</h2>
-//  <img src="${episodeList[i].image.medium}">
-//  <P>${episodeList[i].summary}</p>
-//   `;

@@ -42,6 +42,12 @@ body {
   width: 25%;
 }
 
+#show-list {
+  padding: 5px;
+  margin: 5px;
+  width: 20%;
+}
+
 /* span text */
 #number {
   padding: 2px;
