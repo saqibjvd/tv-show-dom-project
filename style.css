@@ -22,6 +22,7 @@ body {
 /* movie card box */
 .movie-card {
   border: 2px solid rgb(220, 101, 4);
+  border-radius: 25px;
   padding: 1rem;
   margin: 1rem;
   background-color: rgb(10, 9, 9);

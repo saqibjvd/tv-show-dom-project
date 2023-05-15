@@ -15,6 +15,9 @@ function setup() {
     })
     .then((result) => {
       makePageForEpisodes(result);
+    })
+    .catch((error) => {
+      console.log(error);
     });
 }
 
@@ -94,7 +97,7 @@ function searchEpisode() {
 // creating select form - Dropdown menu for episode list
 let selectElm = document.querySelector("#episode-list");
 let optionElm = document.createElement("option");
-optionElm.innerText = "All Episodes.";
+optionElm.innerText = "Show All Episodes...";
 selectElm.appendChild(optionElm);
 
 // list all episodes in the format: "S01E01 - Winter is Coming"
