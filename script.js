@@ -2,31 +2,33 @@
 
 // function for level 100 - 300
 
-// function setup() {
-//   const allEpisodes = getAllEpisodes();
-//   makePageForEpisodes(allEpisodes);
-// }
-
-//Level 350
 function setup() {
-  // fetch("https://api.tvmaze.com/shows/82/episodes")`
-  //   .then(function (response) {
-  //     return response.json();
-  //   })
-  //   .then((result) => {
-  //     makePageForEpisodes(result);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
+  // const allEpisodes = getAllEpisodes();
+  // makePageForEpisodes(allEpisodes);
 }
 
+//Level 350.......Dont need this once level 400 done
+
+// function setup() {
+//   // fetch("https://api.tvmaze.com/shows/82/episodes")`
+//   //   .then(function (response) {
+//   //     return response.json();
+//   //   })
+//   //   .then((result) => {
+//   //     makePageForEpisodes(result);
+//   //   })
+//   //   .catch((error) => {
+//   //     console.log(error);
+//   //   });
+// }
+
+// Shwoing all epsiodes - Level 100
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
   // rootElem.textContent = `Got ${episodeList.length} episode(s)`;
   rootElem.innerHTML = "";
 
-  //  Level 100 all episodes showing.
+  // All episodes showing. - Level 100
   let topContainer = document.createElement("div");
   topContainer.classList.add("top-container");
   rootElem.appendChild(topContainer);
@@ -70,8 +72,8 @@ function makePageForEpisodes(episodeList) {
 
 window.onload = setup;
 
-// search for episode in search bar
-// const allEpisodes = getAllEpisodes();
+// search for episode in search bar - Level 200
+const allEpisodes = getAllEpisodes();
 
 const searchEle = document.getElementById("userInput");
 searchEle.addEventListener("input", searchEpisode);
@@ -98,35 +100,20 @@ let optionElm = document.createElement("option");
 optionElm.innerText = "Show All Episodes...";
 selectElm.appendChild(optionElm);
 
-//list all episodes of all shows in the format: "S01E01 - Winter is Coming". Level 400
-function listAllEpisodes(allEpisodes) {
-  allEpisodes.forEach((episode) => {
-    let options = document.createElement("option");
-    options.value = episode.name;
+// list all episodes in the format: "S01E01 - Winter is Coming" - Level 300
 
-    options.innerText = `${episode.season
-      .toString()
-      .padStart(2, "0")}E - ${episode.number.toString().padStart(2, "0")} - ${
-      episode.name
-    }`;
-    selectElm.appendChild(options);
-  });
-}
+allEpisodes.forEach((episode) => {
+  let options = document.createElement("option");
+  options.value = episode.name;
+  options.innerText = `${episode.season
+    .toString()
+    .padStart(2, "0")}E${episode.number.toString().padStart(2, "0")} - ${
+    episode.name
+  }`;
+  selectElm.appendChild(options);
+});
 
-// list all episodes in the format: "S01E01 - Winter is Coming"
-
-// allEpisodes.forEach((episode) => {
-//   let options = document.createElement("option");
-//   options.value = episode.name;
-//   options.innerText = `${episode.season
-//     .toString()
-//     .padStart(2, "0")}E${episode.number.toString().padStart(2, "0")} - ${
-//     episode.name
-//   }`;
-//   selectElm.appendChild(options);
-// });
-
-// show episode Name, card on main page when selected and hide other cards.
+// show episode Name, card on main page when selected and hide other cards. - Level 300
 selectElm.addEventListener("change", searchDropDown);
 
 function searchDropDown() {
@@ -150,6 +137,21 @@ function searchDropDown() {
 
 //...................Need to re order my code from here..............//
 
+//list all episodes of all shows in the format: "S01E01 - Winter is Coming". Level 400
+function listAllEpisodes(allEpisodes) {
+  allEpisodes.forEach((episode) => {
+    let options = document.createElement("option");
+    options.value = episode.name;
+
+    options.innerText = `${episode.season
+      .toString()
+      .padStart(2, "0")}E - ${episode.number.toString().padStart(2, "0")} - ${
+      episode.name
+    }`;
+    selectElm.appendChild(options);
+  });
+}
+
 //Option list (dropdown menu) - Level 400
 let showListElm = document.getElementById("show-list");
 let showOptionElm = document.createElement("option");
@@ -157,6 +159,9 @@ showOptionElm.innerText = "Select a Show from list";
 showListElm.appendChild(showOptionElm);
 
 const allShows = getAllShows();
+allShows.sort(function (a, b) {
+  return a.name.localeCompare(b.name);
+});
 
 //Showing all shows list. - Level 400.
 function showAllShows() {
@@ -185,6 +190,7 @@ function selectAShow() {
     .then((result) => {
       makePageForEpisodes(result);
       listAllEpisodes(result);
+      // searchDropDown(result);
     })
     .catch((error) => {
       console.log(error);
@@ -192,7 +198,7 @@ function selectAShow() {
 }
 
 // sort series name in alaphabetic order using sort(). - Level 400
-// showName.sort();
+//
 
 // footer
 const footerEle = document.getElementById("footer");
