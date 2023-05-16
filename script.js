@@ -197,9 +197,6 @@ function selectAShow() {
     });
 }
 
-// sort series name in alaphabetic order using sort(). - Level 400
-//
-
 // footer
 const footerEle = document.getElementById("footer");
 const footerLink = document.createElement("a");
