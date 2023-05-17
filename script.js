@@ -28,12 +28,12 @@ function makePageForEpisodes(episodeList) {
   // rootElem.textContent = `Got ${episodeList.length} episode(s)`;
   rootElem.innerHTML = "";
 
-  // All episodes showing. - Level 100
+  // Display All episodes card on container. - Level 100
   let topContainer = document.createElement("div");
   topContainer.classList.add("top-container");
   rootElem.appendChild(topContainer);
 
-  // looping through episode
+  // looping through episode - create movieCard - Level 100
   for (let i = 0; i < episodeList.length; i++) {
     let movieCard = document.createElement("div");
     movieCard.classList.add("movie-card");
@@ -102,21 +102,21 @@ selectElm.appendChild(optionElm);
 
 // list all episodes in the format: "S01E01 - Winter is Coming" - Level 300
 
-allEpisodes.forEach((episode) => {
-  let options = document.createElement("option");
-  options.value = episode.name;
-  options.innerText = `${episode.season
-    .toString()
-    .padStart(2, "0")}E${episode.number.toString().padStart(2, "0")} - ${
-    episode.name
-  }`;
-  selectElm.appendChild(options);
-});
+// allEpisodes.forEach((episode) => {
+//   let options = document.createElement("option");
+//   options.value = episode.name;
+//   options.innerText = `S${episode.season
+//     .toString()
+//     .padStart(2, "0")}E${episode.number.toString().padStart(2, "0")} - ${
+//     episode.name
+//   }`;
+//   selectElm.appendChild(options);
+// });
 
 // show episode Name, card on main page when selected and hide other cards. - Level 300
-selectElm.addEventListener("change", searchDropDown);
+selectElm.addEventListener("change", episodeDropDown);
 
-function searchDropDown() {
+function episodeDropDown() {
   let selectedEpisode = selectElm.value;
 
   const filterEpisodes = allEpisodes.filter((episode) => {
@@ -126,8 +126,9 @@ function searchDropDown() {
       )
     ) {
       return episode;
-    } else if (selectedEpisode == optionElm.innerText) {
-      return allEpisodes;
+
+      // } else if (selectedEpisode == optionElm.innerText) {
+      //   return allEpisodes;
     }
   });
 
@@ -135,10 +136,13 @@ function searchDropDown() {
   makePageForEpisodes(filterEpisodes);
 }
 
-//...................Need to re order my code from here..............//
+//...................Level 400 code from here..............//
 
 //list all episodes of all shows in the format: "S01E01 - Winter is Coming". Level 400
 function listAllEpisodes(allEpisodes) {
+  if (selectElm) {
+    selectElm.innerHTML = "";
+  }
   allEpisodes.forEach((episode) => {
     let options = document.createElement("option");
     options.value = episode.name;
@@ -155,15 +159,16 @@ function listAllEpisodes(allEpisodes) {
 //Option list (dropdown menu) - Level 400
 let showListElm = document.getElementById("show-list");
 let showOptionElm = document.createElement("option");
-showOptionElm.innerText = "Select a Show from list";
+showOptionElm.innerText = "Select Show from list";
 showListElm.appendChild(showOptionElm);
 
+// change to alphbetic order
 const allShows = getAllShows();
 allShows.sort(function (a, b) {
   return a.name.localeCompare(b.name);
 });
 
-//Showing all shows list. - Level 400.
+// Displaying all shows list - Level 400.
 function showAllShows() {
   allShows.forEach((show) => {
     let option = document.createElement("option");
@@ -173,9 +178,9 @@ function showAllShows() {
 }
 
 showAllShows();
-//.................................................//
 
 // event listner for all shows from option dropwdown - Level 400
+
 showListElm.addEventListener("change", selectAShow);
 function selectAShow() {
   const showName = showListElm.value;
@@ -183,14 +188,15 @@ function selectAShow() {
   const selectedShowId = selectedShow[0].id;
 
   //fetching all episode  - Level 400
+
   fetch(`https://api.tvmaze.com/shows/${selectedShowId}/episodes`)
     .then(function (response) {
+      console.log(response);
       return response.json();
     })
     .then((result) => {
       makePageForEpisodes(result);
       listAllEpisodes(result);
-      // searchDropDown(result);
     })
     .catch((error) => {
       console.log(error);
