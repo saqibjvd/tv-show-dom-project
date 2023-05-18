@@ -35,6 +35,7 @@ function makePageForEpisodes(episodeList) {
 
   // looping through episode - create movieCard - Level 100
   for (let i = 0; i < episodeList.length; i++) {
+    // movie card
     let movieCard = document.createElement("div");
     movieCard.classList.add("movie-card");
     topContainer.appendChild(movieCard);
@@ -57,7 +58,11 @@ function makePageForEpisodes(episodeList) {
 
     let episodeImage = document.createElement("img");
     imageContainer.appendChild(episodeImage);
-    episodeImage.src = episodeList[i].image.medium;
+
+    console.log("image", episodeList[i].image);
+    if (episodeList[i].image) {
+      episodeImage.src = episodeList[i].image.medium;
+    }
 
     // Episode Summary container
     let summaryContainer = document.createElement("div");
@@ -73,7 +78,7 @@ function makePageForEpisodes(episodeList) {
 window.onload = setup;
 
 // search for episode in search bar - Level 200
-const allEpisodes = getAllEpisodes();
+let allEpisodes = getAllEpisodes();
 
 const searchEle = document.getElementById("userInput");
 searchEle.addEventListener("input", searchEpisode);
@@ -118,20 +123,16 @@ selectElm.addEventListener("change", episodeDropDown);
 
 function episodeDropDown() {
   let selectedEpisode = selectElm.value;
-
+  console.log("im in dropdown");
   const filterEpisodes = allEpisodes.filter((episode) => {
-    if (
-      episode.name.includes(
-        selectedEpisode || episode.summary.includes(selectedEpisode)
-      )
-    ) {
+    if (episode.name.includes(selectedEpisode)) {
       return episode;
 
       // } else if (selectedEpisode == optionElm.innerText) {
       //   return allEpisodes;
     }
   });
-
+  console.log("hello", allEpisodes);
   document.getElementById("number").innerText = filterEpisodes.length;
   makePageForEpisodes(filterEpisodes);
 }
@@ -147,9 +148,9 @@ function listAllEpisodes(allEpisodes) {
     let options = document.createElement("option");
     options.value = episode.name;
 
-    options.innerText = `${episode.season
+    options.innerText = `E${episode.season
       .toString()
-      .padStart(2, "0")}E - ${episode.number.toString().padStart(2, "0")} - ${
+      .padStart(2, "0")} - S${episode.number.toString().padStart(2, "0")} - ${
       episode.name
     }`;
     selectElm.appendChild(options);
@@ -188,13 +189,15 @@ function selectAShow() {
   const selectedShowId = selectedShow[0].id;
 
   //fetching all episode  - Level 400
-
+  console.log("saqib", selectedShow);
   fetch(`https://api.tvmaze.com/shows/${selectedShowId}/episodes`)
     .then(function (response) {
       console.log(response);
       return response.json();
     })
     .then((result) => {
+      console.log("result", result);
+      allEpisodes = result;
       makePageForEpisodes(result);
       listAllEpisodes(result);
     })
