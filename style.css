@@ -10,6 +10,14 @@ body {
   margin: 5px;
 }
 
+h1 {
+  text-align: center;
+  color: rgb(155, 71, 1);
+  font-family: fantasy;
+  
+
+}
+
 /* card container */
 .top-container {
   display: grid;
