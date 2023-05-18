@@ -173,6 +173,11 @@ function selectAShow() {
 
 // footer
 const footerEle = document.getElementById("footer");
+const paraElem = document.createElement("p");
+paraElem.innerText =
+  "The data has (originally) come from TVMaze.com, for link back to that site (or the specific episode on that site). See tvmaze.com/api#licensing. or click on link below";
+footerEle.appendChild(paraElem);
+
 const footerLink = document.createElement("a");
 footerLink.href = "https://www.tvmaze.com/";
 

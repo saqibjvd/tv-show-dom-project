@@ -6,7 +6,6 @@ body {
 
 #root {
   color: rgb(242, 234, 234);
-  /* background-color: rgb(27, 22, 22); */
   margin: 5px;
 }
 
@@ -14,8 +13,8 @@ h1 {
   text-align: center;
   color: rgb(155, 71, 1);
   font-family: fantasy;
-  
-
+  font-weight: bold;
+  font-size: 50px;
 }
 
 /* card container */
@@ -67,4 +66,15 @@ h1 {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  padding-top: 1rem;
+  color: rgb(155, 71, 1);
+  font-family: fantasy;
+}
+
+button{
+  background-color: orange;
+  color: black;
+  padding: 5px;
+  margin: 5px;
+  width: 10%;
 }
