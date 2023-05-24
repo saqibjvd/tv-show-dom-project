@@ -15,20 +15,25 @@
     </div>
 
     <div id="search-bar">
-      <button id="btn">Home</button>
+      <button id="btn">Show Listing</button>
       <select name="show-selector" id="show-list" class="form-control"></select>
-      <select name="episode-selector" id="episode-list" class="form-control"></select>
-      <input type="text" id="userInput" placeholder="Search for episodes"/>
+      <select
+        name="episode-selector"
+        id="episode-list"
+        class="form-control"
+      ></select>
+      <input type="text" id="userInput" placeholder="Search for episodes" />
 
-      <label for="userInput">Showing: <span id="number">73</span> / 73 Episode(s)</label>
-      
+      <label for="userInput"
+        >Showing: <span id="number">73</span> / 73 Episode(s)</label
+      >
 
       <!-- <p>Please select show from the option above</p> -->
     </div>
 
     <div id="root"></div>
-    <br>
-    <hr>
+    <br />
+    <hr />
     <footer id="footer"></footer>
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>

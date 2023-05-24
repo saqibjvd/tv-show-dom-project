@@ -4,6 +4,7 @@
 
 function setup() {
   // const allEpisodes = getAllEpisodes();
+  makePageForAllShows(allShows);
   // makePageForEpisodes(allEpisodes);
 }
 
@@ -131,6 +132,7 @@ showListElm.appendChild(showOptionElm);
 
 // change Series in alphbetic order
 const allShows = getAllShows();
+console.log(2, allShows);
 allShows.sort(function (a, b) {
   return a.name.localeCompare(b.name);
 });
@@ -169,6 +171,52 @@ function selectAShow() {
     .catch((error) => {
       console.log(error);
     });
+}
+
+// Level 500
+
+function makePageForAllShows(allShows) {
+  const rootElem = document.getElementById("root");
+
+  console.log(1, allShows);
+  rootElem.innerHTML = "";
+
+  // Display All series on container.
+  let seriesContainer = document.createElement("div");
+  seriesContainer.classList.add("series-container");
+  rootElem.appendChild(seriesContainer);
+
+  // looping through series - create showCard - Level 500
+  for (let i = 0; i < allShows.length; i++) {
+    let seriesCard = document.createElement("div");
+    seriesCard.classList.add("series-card");
+    seriesContainer.appendChild(seriesCard);
+
+    // series Tittle
+    let seriesTitleContainer = document.createElement("div");
+    seriesTitleContainer.classList.add("series-title-container");
+    seriesCard.appendChild(seriesTitleContainer);
+
+    // series image container
+    let seriesImageContainer = document.createElement("div");
+    seriesImageContainer.classList.add("series-img-container");
+    seriesCard.appendChild(seriesImageContainer);
+
+    let seriesImage = document.createElement("img");
+    seriesImageContainer.appendChild(seriesImage);
+    if (allShows[i].image) {
+      seriesImage.src = allShows[i].image.medium;
+    }
+
+    // Episode Summary container
+    let seriesSummaryContainer = document.createElement("div");
+    seriesSummaryContainer.classList.add("series-summary-container");
+    seriesCard.appendChild(seriesSummaryContainer);
+
+    let seriesSummaryEl = document.createElement("p");
+    seriesSummaryContainer.appendChild(seriesSummaryEl);
+    seriesSummaryEl.innerHTML = allShows[i].summary;
+  }
 }
 
 // footer
