@@ -195,6 +195,10 @@ function makePageForAllShows(allShows) {
     // series Tittle
     let seriesTitleContainer = document.createElement("div");
     seriesTitleContainer.classList.add("series-title-container");
+    let seriesTitleText = document.createElement("h2");
+    seriesTitleText.classList.add("series-title-text");
+    seriesTitleText.innerText = allShows[i].name;
+    seriesTitleContainer.appendChild(seriesTitleText);
     seriesCard.appendChild(seriesTitleContainer);
 
     // series image container
