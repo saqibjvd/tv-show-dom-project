@@ -34,6 +34,7 @@ h1 {
   margin: 1rem;
   background-color: antiquewhite;
   color: black;
+  box-shadow: 10px 10px grey;
   /* background-color: rgb(10, 9, 9);
   color: rgb(242, 234, 234); */
 }
@@ -91,10 +92,11 @@ button {
 .series-card {
   background-color: antiquewhite;
   color: black;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin: 1rem;
   padding: 1rem;
   border-radius: 20px;
+  box-shadow: 10px 10px grey;
   /* /* display: flex;
   align-content: space-between; */
 }
