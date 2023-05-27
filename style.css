@@ -1,11 +1,11 @@
 body {
   margin: 20px;
-  padding: 1rem;
-  background-color: rgb(170, 167, 167);
+  padding: 20px;
+  /* background-color: rgb(170, 167, 167); */
 }
 
 #root {
-  color: rgb(242, 234, 234);
+  /* color: rgb(242, 234, 234); */
   margin: 5px;
 }
 
@@ -23,17 +23,19 @@ h1 {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 0.5rem;
   text-align: center;
-  background-color: black;
+  /* background-color: antiquewhite; */
 }
 
 /* movie card box */
 .movie-card {
   border: 2px solid rgb(220, 101, 4);
-  border-radius: 25px;
+  border-radius: 10px;
   padding: 1rem;
   margin: 1rem;
-  background-color: rgb(10, 9, 9);
-  color: rgb(242, 234, 234);
+  background-color: antiquewhite;
+  color: black;
+  /* background-color: rgb(10, 9, 9);
+  color: rgb(242, 234, 234); */
 }
 
 /* search box for episodes */
@@ -79,27 +81,30 @@ button {
   width: 10%;
 }
 
-/* .series-container {
-  background-color: antiquewhite;
-  color: black;
-  margin: 20px;
-  padding: 20px;
-}
-
-.series-title-text {
-  display: flex;
-  align-items: center;
-
-} */
-
 .series-title {
   text-align: center;
-  color: black;
+  color: rgba(78, 4, 4, 0.853);
+  margin: 5px;
+  border-bottom: 1px solid rgb(97, 12, 3);
+ 
 }
 
-.series-summary {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
+.series-card {
+  background-color: antiquewhite;
   color: black;
+  font-family: fantasy;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 20px;
+  /* /* display: flex;
+  align-content: space-between; */
+} 
+
+.series-info {
+  color: orange;
+  background-color: black;
+  padding: 1rem;
+  margin: 1rem;
+  height: 15%;
+  width: 15%; 
 }

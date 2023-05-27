@@ -224,23 +224,25 @@ function makePageForAllShows(allShows) {
     // series extra info container - rated, generes, status, runtime
     let seriesInfoContainer = document.createElement("div");
     seriesInfoContainer.classList.add("series-info");
-    seriesCard.appendChild(seriesInfoContainer);
+    // seriesCard.appendChild(seriesInfoContainer);
 
     let seriesRating = document.createElement("p");
-    seriesCard.appendChild(seriesRating);
+    seriesInfoContainer.appendChild(seriesRating);
     seriesRating.innerHTML = "Rated: " + allShows[i].rating.average;
 
     let seriesGeneres = document.createElement("p");
-    seriesCard.appendChild(seriesGeneres);
+    seriesInfoContainer.appendChild(seriesGeneres);
     seriesGeneres.innerHTML = "Generes: " + allShows[i].genres;
 
     let seriesStatus = document.createElement("p");
-    seriesCard.appendChild(seriesStatus);
+    seriesInfoContainer.appendChild(seriesStatus);
     seriesStatus.innerHTML = "Status: " + allShows[i].status;
 
-    let seriesRunTime = document.createElement("p");
-    seriesCard.appendChild(seriesRunTime);
+    let seriesRunTime = document.createElement("p");  
+    seriesInfoContainer.appendChild(seriesRunTime);
     seriesRunTime.innerHTML = "Runtime: " + allShows[i].runtime;
+
+    seriesCard.appendChild(seriesInfoContainer);
   }
 }
 
