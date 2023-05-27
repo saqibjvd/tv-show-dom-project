@@ -71,7 +71,7 @@ h1 {
   font-family: fantasy;
 }
 
-button{
+button {
   background-color: orange;
   color: black;
   padding: 5px;
@@ -91,3 +91,15 @@ button{
   align-items: center;
 
 } */
+
+.series-title {
+  text-align: center;
+  color: black;
+}
+
+.series-summary {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: black;
+}

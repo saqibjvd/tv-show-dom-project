@@ -196,7 +196,7 @@ function makePageForAllShows(allShows) {
     let seriesTitleContainer = document.createElement("div");
     seriesTitleContainer.classList.add("series-title-container");
     let seriesTitleText = document.createElement("h2");
-    seriesTitleText.classList.add("series-title-text");
+    seriesTitleText.classList.add("series-title");
     seriesTitleText.innerText = allShows[i].name;
     seriesTitleContainer.appendChild(seriesTitleText);
     seriesCard.appendChild(seriesTitleContainer);
@@ -212,18 +212,40 @@ function makePageForAllShows(allShows) {
       seriesImage.src = allShows[i].image.medium;
     }
 
-    // Episode Summary container
+    // Series Summary container
     let seriesSummaryContainer = document.createElement("div");
-    seriesSummaryContainer.classList.add("series-summary-container");
+    seriesSummaryContainer.classList.add("series-summary");
     seriesCard.appendChild(seriesSummaryContainer);
 
     let seriesSummaryEl = document.createElement("p");
     seriesSummaryContainer.appendChild(seriesSummaryEl);
     seriesSummaryEl.innerHTML = allShows[i].summary;
+
+    // series extra info container - rated, generes, status, runtime
+    let seriesInfoContainer = document.createElement("div");
+    seriesInfoContainer.classList.add("series-info");
+    seriesCard.appendChild(seriesInfoContainer);
+
+    let seriesRating = document.createElement("p");
+    seriesCard.appendChild(seriesRating);
+    seriesRating.innerHTML = "Rated: " + allShows[i].rating.average;
+
+    let seriesGeneres = document.createElement("p");
+    seriesCard.appendChild(seriesGeneres);
+    seriesGeneres.innerHTML = "Generes: " + allShows[i].genres;
+
+    let seriesStatus = document.createElement("p");
+    seriesCard.appendChild(seriesStatus);
+    seriesStatus.innerHTML = "Status: " + allShows[i].status;
+
+    let seriesRunTime = document.createElement("p");
+    seriesCard.appendChild(seriesRunTime);
+    seriesRunTime.innerHTML = "Runtime: " + allShows[i].runtime;
   }
 }
 
 // footer
+
 const footerEle = document.getElementById("footer");
 const paraElem = document.createElement("p");
 paraElem.innerText =
