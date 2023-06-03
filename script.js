@@ -206,10 +206,39 @@ function makePageForAllShows(allShows) {
     seriesImageContainer.classList.add("series-img-container");
     seriesCard.appendChild(seriesImageContainer);
 
+    function showEpisodesImageClick() {
+      let selectedShowName = seriesTitleText.innerText;
+
+      const filterShows = allShows.filter((show) => {
+        if (show.name == selectedShowName) {
+          return show;
+        }
+      });
+
+      
+      let selectedShowId = filterShows[0].id;
+
+      fetch(`https://api.tvmaze.com/shows/${selectedShowId}/episodes`)
+        .then(function (response) {
+          console.log(response);
+          return response.json();
+        })
+        .then((result) => {
+          allEpisodes = result; // double check - make const - no global
+          makePageForEpisodes(result);
+          listAllEpisodes(result);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+
     let seriesImage = document.createElement("img");
     seriesImageContainer.appendChild(seriesImage);
     if (allShows[i].image) {
       seriesImage.src = allShows[i].image.medium;
+
+      seriesImageContainer.addEventListener("click", showEpisodesImageClick);
     }
 
     // Series Summary container
@@ -238,7 +267,7 @@ function makePageForAllShows(allShows) {
     seriesInfoContainer.appendChild(seriesStatus);
     seriesStatus.innerHTML = "Status: " + allShows[i].status;
 
-    let seriesRunTime = document.createElement("p");  
+    let seriesRunTime = document.createElement("p");
     seriesInfoContainer.appendChild(seriesRunTime);
     seriesRunTime.innerHTML = "Runtime: " + allShows[i].runtime;
 
