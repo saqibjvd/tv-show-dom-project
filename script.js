@@ -146,6 +146,10 @@ function showAllShows() {
   });
 }
 
+// let btnElm = document.getElementById("btn");
+
+// btnElm.addEventListener("click", showAllShows());
+
 showAllShows();
 
 // event listner for all Series from option dropwdown - Level 400
@@ -178,7 +182,6 @@ function selectAShow() {
 function makePageForAllShows(allShows) {
   const rootElem = document.getElementById("root");
 
-  console.log(1, allShows);
   rootElem.innerHTML = "";
 
   // Display All series on container.
@@ -206,6 +209,7 @@ function makePageForAllShows(allShows) {
     seriesImageContainer.classList.add("series-img-container");
     seriesCard.appendChild(seriesImageContainer);
 
+    // view episode when image is clikced - LEVEL 500
     function showEpisodesImageClick() {
       let selectedShowName = seriesTitleText.innerText;
 
@@ -215,7 +219,6 @@ function makePageForAllShows(allShows) {
         }
       });
 
-      
       let selectedShowId = filterShows[0].id;
 
       fetch(`https://api.tvmaze.com/shows/${selectedShowId}/episodes`)
@@ -224,7 +227,7 @@ function makePageForAllShows(allShows) {
           return response.json();
         })
         .then((result) => {
-          allEpisodes = result; // double check - make const - no global
+          allEpisodes = result;
           makePageForEpisodes(result);
           listAllEpisodes(result);
         })
@@ -237,6 +240,8 @@ function makePageForAllShows(allShows) {
     seriesImageContainer.appendChild(seriesImage);
     if (allShows[i].image) {
       seriesImage.src = allShows[i].image.medium;
+
+      // eventlistener for click on image - LEVEL 500
 
       seriesImageContainer.addEventListener("click", showEpisodesImageClick);
     }
