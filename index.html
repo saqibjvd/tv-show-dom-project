@@ -3,17 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TV Show Project | My Name (My GitHub username)</title>
+    <title>TV Show Project | Saqib Javed (My GitHub saqibjvd)</title>
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   </head>
 
   <body>
-    <div id="root">
+    <div>
+      <h1>YOU FLEX</h1>
+      <h2>Your favourite shows in one place!</h2>
     </div>
 
+    <div id="search-bar">
+      <button id="btn" class="hideButton">Show Listing</button>
+      <select name="show-selector" id="show-list" class="form-control"></select>
+      <select
+        name="episode-selector"
+        id="episode-list"
+        class="form-control"
+      ></select>
+      <input type="text" id="userInput" placeholder="Search for episodes" />
+
+      <label for="userInput"
+        >Showing: <span id="number">73</span> / <span id="number2">73 Episode(s)</label
+      >
+
+      <!-- <p>Please select show from the option above</p> -->
+    </div>
+
+    <div id="root"></div>
+    <br />
+    <hr />
+    <footer id="footer"></footer>
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>
+    <script src="shows.js"></script>
 
     <!-- Loads YOUR javascript code -->
     <script src="script.js"></script>
